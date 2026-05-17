@@ -1,5 +1,9 @@
 {
   "version": 2,
-  "builds": [{ "src": "*.html", "use": "@vercel/static" }],
-  "routes": [{ "src": "/(.*)", "dest": "/$1" }]
+  "routes": [
+    {"src": "/style.css", "headers": {"Content-Type": "text/css"}, "dest": "/style.css"},
+    {"src": "/app.js", "headers": {"Content-Type": "application/javascript"}, "dest": "/app.js"},
+    {"src": "/config.js", "headers": {"Content-Type": "application/javascript"}, "dest": "/config.js"},
+    {"src": "/(.*)", "dest": "/index.html"}
+  ]
 }
