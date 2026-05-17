@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>VXZ × ZHENOX — Unban Pro</title>
+<link rel="icon" href="https://files.catbox.moe/ejn7q9.jpeg"/>
+<meta name="theme-color" content="#060b09"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="intro">
+  <div class="intro-orb">
+    <div class="video-circle">
+      <video id="player" playsinline preload="metadata">
+        <source src="https://files.catbox.moe/mm85lg.mp4" type="video/mp4"/>
+      </video>
+    </div>
+  </div>
+  <div class="intro-title">VXZ × ZHENOX</div>
+  <div class="intro-sub">UNBAN PRO · v5.1</div>
+  <div class="intro-bar-wrap">
+    <div class="intro-bar"><div class="intro-fill" id="introBar"></div></div>
+  </div>
+</div>
+
+<div id="welcome" aria-hidden="true">
+  <div class="wc">
+    <span class="wc-emoji">🔓</span>
+    <div class="wc-title">VXZ × ZHENOX</div>
+    <div class="wc-sub">Sistem appeal WhatsApp paling lengkap.<br>23+ metode · Community Reports · Multi-fitur</div>
+    <div class="wc-chips">
+      <span class="wc-chip">✓ Gratis</span>
+      <span class="wc-chip">✓ 23+ Metode</span>
+      <span class="wc-chip">✓ Community</span>
+      <span class="wc-chip">✓ History</span>
+    </div>
+  </div>
+</div>
+
+<div id="loginModal" aria-hidden="true">
+  <div class="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">Login</div>
+      <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="loginForm">
+      <div class="field-g">
+        <div class="field-lbl">Email</div>
+        <div class="inp-w"><i class="ico fas fa-envelope"></i><input type="email" id="lEmail" class="fi" placeholder="email@kamu.com" autocomplete="email"/></div>
+      </div>
+      <div class="field-g">
+        <div class="field-lbl">Password</div>
+        <div class="inp-w"><i class="ico fas fa-lock"></i><input type="password" id="lPass" class="fi" placeholder="••••••••" autocomplete="current-password"/></div>
+      </div>
+      <div class="hp-field"><input type="text" name="website" id="hp" autocomplete="off" tabindex="-1"/></div>
+      <button class="send-btn" onclick="doLogin()"><i class="fab fa-whatsapp"></i><span>LOGIN</span></button>
+      <div class="modal-switch">Belum punya akun? <a href="#" onclick="switchModal('register')">Daftar</a></div>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="field-g">
+        <div class="field-lbl">Username</div>
+        <div class="inp-w"><i class="ico fas fa-user"></i><input type="text" id="rUser" class="fi" placeholder="username kamu" maxlength="30" autocomplete="username"/></div>
+      </div>
+      <div class="field-g">
+        <div class="field-lbl">Email</div>
+        <div class="inp-w"><i class="ico fas fa-envelope"></i><input type="email" id="rEmail" class="fi" placeholder="email@kamu.com" autocomplete="email"/></div>
+      </div>
+      <div class="field-g">
+        <div class="field-lbl">Password</div>
+        <div class="inp-w"><i class="ico fas fa-lock"></i><input type="password" id="rPass" class="fi" placeholder="min 8 karakter" autocomplete="new-password"/></div>
+      </div>
+      <div class="hp-field"><input type="text" name="website2" id="hp2" autocomplete="off" tabindex="-1"/></div>
+      <button class="send-btn" onclick="doRegister()"><i class="fa-solid fa-user-plus"></i><span>DAFTAR</span></button>
+      <div class="modal-switch">Sudah punya akun? <a href="#" onclick="switchModal('login')">Login</a></div>
+    </div>
+    <div class="status" id="authStatus" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<div id="app">
+  <header class="topbar">
+    <div class="tb-l">
+      <div class="tb-logo"><i class="fab fa-whatsapp"></i></div>
+      <div class="tb-name">VXZ × ZHENOX</div>
+    </div>
+    <div class="tb-r">
+      <div class="pill live"><i class="fa-solid fa-circle" style="font-size:.42rem"></i> LIVE</div>
+      <button class="auth-btn" id="authBtn" onclick="handleAuthBtn()">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span id="authBtnTxt">Login</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="page on" id="p-unban">
+    <div class="note">
+      <div class="note-tag">💬 INFO PENTING</div>
+      <div class="note-txt">Buat <strong>no WA lu yang ke-ban tiba-tiba</strong> — kesini aja, tinggal masukin nomor WA lu. <strong>Daripada lewat Gmail ribet</strong>, di sini langsung auto-isi email appeal ke WhatsApp Support resmi! 🔥</div>
+    </div>
+    <div class="hero">
+      <div class="av"><img src="https://files.catbox.moe/ejn7q9.jpeg" alt="VXZ"/><div class="dot"></div></div>
+      <div class="hero-name">VXZ × ZHENOX</div>
+      <div class="hero-desc">Appeal otomatis → support@support.whatsapp.com</div>
+      <div class="stats">
+        <div class="s"><div class="s-n">23+</div><div class="s-l">Metode</div></div>
+        <div class="s"><div class="s-n">8</div><div class="s-l">Bahasa</div></div>
+        <div class="s"><div class="s-n">230+</div><div class="s-l">Negara</div></div>
+        <div class="s"><div class="s-n">⚡</div><div class="s-l">Cepat</div></div>
+      </div>
+    </div>
+
+    <div class="sh"><div class="sh-l"></div><div class="sh-t">NOMOR WHATSAPP</div><div class="sh-l"></div></div>
+    <div style="position:relative;margin-bottom:12px">
+      <div class="phone-row">
+        <div style="position:relative">
+          <div class="code-badge" id="codeBadge" onclick="toggleDrop('cDrop')">
+            <span id="selFlag">🌏</span>
+            <span id="selCode">+62</span>
+            <i class="fa-solid fa-chevron-down" style="font-size:.5rem;color:var(--t3)"></i>
+          </div>
+          <div class="c-dropdown" id="cDrop">
+            <input class="c-search" id="cSearch" type="text" placeholder="Cari negara atau kode..."/>
+            <div id="cList"></div>
+          </div>
+        </div>
+        <div class="inp-w">
+          <i class="ico fas fa-phone"></i>
+          <input type="tel" id="nomor" class="fi" placeholder="8xxxxxxxxxx" inputmode="numeric"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="sh"><div class="sh-l"></div><div class="sh-t">PILIH METODE (23+)</div><div class="sh-l"></div></div>
+    <div class="mgrid" id="mgrid"></div>
+
+    <div class="sel-info" id="selInfo">
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="selInfoTxt"></span>
+    </div>
+
+    <button class="send-btn" id="sendBtn" style="margin-bottom:10px">
+      <i class="fab fa-whatsapp"></i>
+      <span>KIRIM APPEAL UNBAN</span>
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
+    <div class="status" id="unbanStatus"></div>
+
+    <div class="steps">
+      <div class="sh" style="margin:0 0 10px"><div class="sh-l"></div><div class="sh-t">CARA PAKAI</div><div class="sh-l"></div></div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">Pilih <b>negara</b> dari dropdown kode negara</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Masukkan <b>nomor WA yang ke-ban</b> tanpa angka 0 di depan</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t">Tap <b>metode unban</b> yang sesuai kondisi ban lu</div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-t">Tap <b>Kirim Appeal</b> → Gmail terbuka otomatis sudah ke-isi</div></div>
+      <div class="step"><div class="step-n">5</div><div class="step-t"><b>Kirim emailnya</b>, tunggu balasan 1–3 hari kerja</div></div>
+    </div>
+    <div class="ft">VXZ × ZHENOX · UNBAN PRO · v5.1</div>
+  </div>
+
+  <div class="page" id="p-community">
+    <div class="sh" style="margin-top:4px"><div class="sh-l"></div><div class="sh-t">COMMUNITY REPORTS</div><div class="sh-l"></div></div>
+
+    <div class="note" style="margin-bottom:14px">
+      <div class="note-tag">📋 COMMUNITY</div>
+      <div class="note-txt"><strong>Share pengalaman unban WA lu</strong> di sini. Bantu sesama yang kena ban! Like bisa tanpa login. Upload foto bukti butuh login.</div>
+    </div>
+
+    <button class="send-btn" onclick="showReportForm()" style="margin-bottom:14px">
+      <i class="fa-solid fa-plus"></i>
+      <span>TAMBAH REPORT</span>
+      <i class="fa-solid fa-pen"></i>
+    </button>
+
+    <div class="report-form-wrap" id="reportFormWrap" style="display:none">
+      <div class="report-form">
+        <div class="sh" style="margin:0 0 12px"><div class="sh-l"></div><div class="sh-t">BUAT REPORT</div><div class="sh-l"></div></div>
+
+        <div class="limit-bar" id="limitBar">
+          <i class="fa-solid fa-gauge-high" style="color:var(--g)"></i>
+          <span id="limitTxt">0/5 report hari ini</span>
+          <span class="limit-reset" id="limitReset"></span>
+        </div>
+
+        <div class="field-g">
+          <div class="field-lbl"><i class="fa-solid fa-heading" style="color:var(--g)"></i> JUDUL REPORT</div>
+          <div class="inp-w"><i class="ico fas fa-pen"></i><input type="text" id="repTitle" class="fi" placeholder="Singkat dan jelas..." maxlength="80"/></div>
+        </div>
+        <div class="field-g">
+          <div class="field-lbl"><i class="fa-solid fa-list" style="color:var(--g)"></i> KATEGORI BAN</div>
+          <div class="select-w">
+            <i class="ico fas fa-tag"></i>
+            <select id="repCat" class="fi">
+              <option value="">Pilih kategori...</option>
+              <option>Perma Ban</option>
+              <option>Spam Ban</option>
+              <option>Temporary Ban</option>
+              <option>Ban Berulang (Loop)</option>
+              <option>Ban Tanpa Alasan</option>
+              <option>Ban Setelah GB/Mod</option>
+              <option>Mass Report Ban</option>
+              <option>Nomor Baru Ban</option>
+              <option>Business Ban</option>
+              <option>Lainnya</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-g">
+          <div class="field-lbl"><i class="fa-solid fa-align-left" style="color:var(--g)"></i> DESKRIPSI LENGKAP</div>
+          <div class="inp-w">
+            <textarea id="repDesc" class="fi" placeholder="Ceritakan pengalaman ban WA lu, metode yang berhasil, berapa lama proses, dll..." maxlength="1000" rows="5"></textarea>
+          </div>
+          <div class="char-count"><span id="descCount">0</span>/1000</div>
+        </div>
+
+        <div class="field-g" id="photoField">
+          <div class="field-lbl">
+            <i class="fa-solid fa-image" style="color:var(--g)"></i> FOTO BUKTI
+            <span class="login-req-badge" id="photoLoginBadge">🔒 Login dulu</span>
+          </div>
+          <div class="photo-upload-area" id="photoArea" onclick="triggerPhoto()">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Tap untuk upload foto bukti</span>
+            <span class="photo-hint">JPG, PNG, WEBP · Maks 3MB</span>
+          </div>
+          <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp" style="display:none"/>
+          <div id="photoPreview"></div>
+        </div>
+
+        <div class="hp-field"><input type="text" name="website3" id="hp3" autocomplete="off" tabindex="-1"/></div>
+
+        <div style="display:flex;gap:8px">
+          <button class="send-btn" onclick="submitReport()" style="flex:1">
+            <i class="fa-solid fa-paper-plane"></i><span>KIRIM REPORT</span>
+          </button>
+          <button onclick="hideReportForm()" style="padding:14px 16px;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);color:var(--t2);cursor:pointer;font-family:var(--ui);font-size:.82rem;border-radius:14px">
+            Batal
+          </button>
+        </div>
+        <div class="status" id="reportStatus" style="margin-top:10px"></div>
+      </div>
+    </div>
+
+    <div class="sh"><div class="sh-l"></div><div class="sh-t">REPORT TERBARU</div><div class="sh-l"></div></div>
+    <div id="reportList">
+      <div class="loading-state"><i class="fa-solid fa-circle-notch fa-spin"></i> Memuat report...</div>
+    </div>
+  </div>
+
+  <div class="page" id="p-history">
+    <div class="sh" style="margin-top:4px"><div class="sh-l"></div><div class="sh-t">RIWAYAT APPEAL</div><div class="sh-l"></div></div>
+    <div class="hist-actions">
+      <button class="h-btn" onclick="exportHistory()"><i class="fa-solid fa-download"></i> Export</button>
+      <button class="h-btn danger" onclick="clearHistory()"><i class="fa-solid fa-trash"></i> Hapus Semua</button>
+    </div>
+    <div id="histList"></div>
+  </div>
+
+  <div class="page" id="p-check">
+    <div class="sh" style="margin-top:4px"><div class="sh-l"></div><div class="sh-t">CEK STATUS NOMOR WA</div><div class="sh-l"></div></div>
+    <div class="note" style="margin-bottom:14px">
+      <div class="note-tag">ℹ️ CEK NOMOR</div>
+      <div class="note-txt">Cek apakah nomor WA <strong>masih aktif / bisa dihubungi</strong> lewat link wa.me resmi WhatsApp.</div>
+    </div>
+    <div class="check-card">
+      <div class="phone-row" style="margin-bottom:12px">
+        <div style="position:relative">
+          <div class="code-badge" id="checkBadge" onclick="toggleDrop('cDropCheck')">
+            <span id="checkFlag">🌏</span>
+            <span id="checkCode">+62</span>
+            <i class="fa-solid fa-chevron-down" style="font-size:.5rem;color:var(--t3)"></i>
+          </div>
+          <div class="c-dropdown" id="cDropCheck">
+            <input class="c-search" id="cSearchCheck" type="text" placeholder="Cari negara..."/>
+            <div id="cListCheck"></div>
+          </div>
+        </div>
+        <div class="inp-w">
+          <i class="ico fas fa-phone"></i>
+          <input type="tel" id="checkNomor" class="fi" placeholder="8xxxxxxxxxx" inputmode="numeric"/>
+        </div>
+      </div>
+      <button class="send-btn" onclick="doCheck()">
+        <i class="fa-solid fa-magnifying-glass"></i><span>CEK STATUS</span><i class="fab fa-whatsapp"></i>
+      </button>
+      <div class="check-result" id="checkResult" style="display:none">
+        <div id="crTitle" class="cr-title"></div>
+        <div id="crSub" class="cr-sub"></div>
+      </div>
+    </div>
+    <div class="check-info-cards">
+      <div class="ci-card"><span class="ci-icon">✅</span><div class="ci-title">Link Terbuka</div><div class="ci-sub">Nomor aktif & bisa dihubungi</div></div>
+      <div class="ci-card"><span class="ci-icon">❌</span><div class="ci-title">Link Error</div><div class="ci-sub">Nomor tidak terdaftar/banned</div></div>
+      <div class="ci-card"><span class="ci-icon">📋</span><div class="ci-title">wa.me Resmi</div><div class="ci-sub">Link resmi dari WhatsApp Inc.</div></div>
+      <div class="ci-card"><span class="ci-icon">🔒</span><div class="ci-title">100% Aman</div><div class="ci-sub">Tidak menyimpan data nomor</div></div>
+    </div>
+  </div>
+
+  <nav class="bnav">
+    <button class="bn active" onclick="goPage('unban',this)"><i class="fa-solid fa-unlock"></i><span>UNBAN</span></button>
+    <button class="bn" onclick="goPage('community',this)"><i class="fa-solid fa-users"></i><span>COMMUNITY</span></button>
+    <button class="bn" onclick="goPage('history',this)"><i class="fa-solid fa-clock-rotate-left"></i><span>HISTORY</span></button>
+    <button class="bn" onclick="goPage('check',this)"><i class="fa-solid fa-magnifying-glass"></i><span>CEK</span></button>
+  </nav>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
