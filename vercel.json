@@ -1,9 +1,19 @@
 {
   "version": 2,
+  "buildCommand": null,
+  "outputDirectory": ".",
   "routes": [
-    {"src": "/style.css", "headers": {"Content-Type": "text/css"}, "dest": "/style.css"},
-    {"src": "/app.js", "headers": {"Content-Type": "application/javascript"}, "dest": "/app.js"},
-    {"src": "/config.js", "headers": {"Content-Type": "application/javascript"}, "dest": "/config.js"},
-    {"src": "/(.*)", "dest": "/index.html"}
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*\\.(css|js|ico|png|jpg|svg|webp|woff2?))",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
